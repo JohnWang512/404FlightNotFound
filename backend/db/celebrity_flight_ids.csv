@@ -1,0 +1,27 @@
+# Celebrity private jet tracking data
+# Sources: FlightAware FAA Registry (https://www.flightaware.com/resources/registration/<tail>)
+# Columns: celebrity_name, tail_number, icao_hex, aircraft_model, verified, notes
+#
+# tail_number  → used by FlightAware AeroAPI  (e.g. /flights/N628TS)
+# icao_hex     → used by airplanes.live ADS-B live tracking
+# verified     → "yes" means tail confirmed in FAA registry as matching celebrity ownership
+#                "no"  means seed-data placeholder; registration does NOT match celebrity
+#
+celebrity_name,tail_number,icao_hex,aircraft_model,verified,notes
+Taylor Swift,N621MM,A81B13,Dassault Falcon 7X,yes,Active FAA reg - serial 27 - owner corp hidden
+Taylor Swift,N898TS,AC64C6,Dassault Falcon 900,partial,Re-registered; originally tracked as Swift's Falcon 7X
+Elon Musk,N628TS,A835AF,Gulfstream G650ER,yes,Falcon Landing LLC - Hawthorne CA (SpaceX HQ city)
+Elon Musk,N272BG,A2AE0A,Gulfstream G550,yes,Same operator Falcon Landing LLC - Hawthorne CA
+Jeff Bezos,N292JB,A2FDB2,Embraer ERJ 190-100,no,Seed placeholder - actual reg is an Embraer E190 not Bezos jet
+Oprah Winfrey,N540OW,,Bombardier Global Express XRS,no,No active FAA registration found - likely re-registered
+Kim Kardashian,N618KK,,Bombardier Global 7500,no,No active FAA registration found - likely re-registered
+Kylie Jenner,N810KJ,AB0A46,Bombardier Global 7500,yes,Rise and Shine Air LLC - Wilmington DE (common celebrity shell)
+Drake,N767CJ,AA5BC4,Boeing 767-24Q,yes,Bank of Utah Trustee - 292 seats - Drake's Air Drake
+Jay-Z,N450JB,A572E6,Boeing E75,no,Seed placeholder - actual reg is a 1940s biplane trainer not Jay-Z
+Bill Gates,N887WM,AC39D6,Gulfstream G650ER,yes,2018 model serial 6357 - confirmed active
+Mark Zuckerberg,N72MZ,A9A25E,Diamond DA 40,no,Seed placeholder - actual reg is a small 4-seat GA plane
+LeBron James,N601LJ,A7CBF9,Learjet 60,no,Seed placeholder - expired experimental reg
+Floyd Mayweather,N750FM,AA1A92,STOL CH 750,no,Seed placeholder - actual reg is a homebuilt experimental
+John Travolta,N611JT,A7F34F,Honda HA-420 HondaJet,partial,Leflight Jet LLC - Wilmington DE; JT initials match
+Larry Ellison,N123LE,A05FD6,Long-EZ,no,Seed placeholder - actual reg is a homebuilt experimental
+Steven Spielberg,N289SS,A2F10B,Cirrus SR22,no,Seed placeholder - actual reg is a small 4-seat SR22

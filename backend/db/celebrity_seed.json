@@ -1,0 +1,37 @@
+{
+  "celebrities": [
+    { "name": "Taylor Swift",     "industry": "Music" },
+    { "name": "Elon Musk",        "industry": "Tech" },
+    { "name": "Jeff Bezos",       "industry": "Tech" },
+    { "name": "Oprah Winfrey",    "industry": "Media" },
+    { "name": "Kim Kardashian",   "industry": "Entertainment" },
+    { "name": "Drake",            "industry": "Music" },
+    { "name": "Jay-Z",            "industry": "Music" },
+    { "name": "Bill Gates",       "industry": "Tech" },
+    { "name": "Mark Zuckerberg",  "industry": "Tech" },
+    { "name": "LeBron James",     "industry": "Sports" },
+    { "name": "Floyd Mayweather", "industry": "Sports" },
+    { "name": "Kylie Jenner",     "industry": "Entertainment" },
+    { "name": "John Travolta",    "industry": "Hollywood" },
+    { "name": "Larry Ellison",    "industry": "Tech" },
+    { "name": "Steven Spielberg", "industry": "Hollywood" }
+  ],
+  "aircraft": [
+    { "tailNumber": "N898TS",  "model": "Dassault Falcon 7X",          "ownerId": 1,  "category": "celebrity" },
+    { "tailNumber": "N621MM",  "model": "Bombardier Challenger 650",    "ownerId": 1,  "category": "celebrity" },
+    { "tailNumber": "N628TS",  "model": "Gulfstream G650ER",            "ownerId": 2,  "category": "celebrity" },
+    { "tailNumber": "N292JB",  "model": "Gulfstream G650ER",            "ownerId": 3,  "category": "celebrity" },
+    { "tailNumber": "N540OW",  "model": "Bombardier Global Express XRS","ownerId": 4,  "category": "celebrity" },
+    { "tailNumber": "N618KK",  "model": "Bombardier Global 7500",       "ownerId": 5,  "category": "celebrity" },
+    { "tailNumber": "N767CJ",  "model": "Boeing 767-200",               "ownerId": 6,  "category": "celebrity" },
+    { "tailNumber": "N450JB",  "model": "Bombardier Challenger 850",    "ownerId": 7,  "category": "celebrity" },
+    { "tailNumber": "N887WM",  "model": "Bombardier Global Express",    "ownerId": 8,  "category": "celebrity" },
+    { "tailNumber": "N72MZ",   "model": "Gulfstream G650ER",            "ownerId": 9,  "category": "celebrity" },
+    { "tailNumber": "N601LJ",  "model": "Gulfstream G280",              "ownerId": 10, "category": "celebrity" },
+    { "tailNumber": "N750FM",  "model": "Gulfstream G550",              "ownerId": 11, "category": "celebrity" },
+    { "tailNumber": "N831KJ",  "model": "Bombardier Global 6000",       "ownerId": 12, "category": "celebrity" },
+    { "tailNumber": "N950JT",  "model": "Boeing 707-138",               "ownerId": 13, "category": "celebrity" },
+    { "tailNumber": "N123LE",  "model": "Gulfstream V",                 "ownerId": 14, "category": "celebrity" },
+    { "tailNumber": "N289SS",  "model": "Boeing Business Jet",          "ownerId": 15, "category": "celebrity" }
+  ]
+}

@@ -1,0 +1,10 @@
+**/build
+.gradle
+/.gradle
+/target
+/.mvn
+mvnw
+mvnw.cmd
+pom.xml
+gradle/wrapper/gradle-wrapper.jar
+*.log

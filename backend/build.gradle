@@ -1,0 +1,148 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.3'
+    id 'io.spring.dependency-management' version '1.1.3'
+    id 'jacoco'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.security:spring-security-crypto'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testImplementation 'org.springframework.boot:spring-boot-data-jpa-test'
+    testRuntimeOnly 'com.h2database:h2'
+}
+
+jacoco {
+    toolVersion = '0.8.12'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "failed", "skipped", "standardOut", "standardError"
+        showStandardStreams = true
+        exceptionFormat = "full"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform {
+        excludeTags 'manual_backend', 'manual_api', 'manual_http'
+    }
+}
+
+tasks.register('manualBackendTest', Test) {
+    group = 'verification'
+    description = 'Runs manual backend/controller/JPA tests.'
+    useJUnitPlatform {
+        includeTags 'manual_backend'
+    }
+    shouldRunAfter(tasks.named('test'))
+}
+
+tasks.register('manualApiTest', Test) {
+    group = 'verification'
+    description = 'Runs manual real API smoke tests.'
+    useJUnitPlatform {
+        includeTags 'manual_api'
+    }
+    shouldRunAfter(tasks.named('test'))
+}
+
+tasks.register('manualHttpTest', Test) {
+    group = 'verification'
+    description = 'Runs manual HTTP mock tests for FlightService.'
+    useJUnitPlatform {
+        includeTags 'manual_http'
+    }
+    shouldRunAfter(tasks.named('test'))
+}
+
+tasks.register('allTests') {
+    group = 'verification'
+    description = 'Runs default tests plus all manual test suites.'
+    dependsOn(
+            tasks.named('test'),
+            tasks.named('manualBackendTest'),
+            tasks.named('manualApiTest'),
+            tasks.named('manualHttpTest')
+    )
+}
+
+def backendCoverageExcludes = [
+        '**/entity/**',
+        '**/dto/**',
+        '**/config/**',
+        '**/*Application.class',
+        '**/EnvUtils.class'
+]
+
+tasks.register('jacocoAllTestsReport', JacocoReport) {
+    group = 'verification'
+    description = 'Generates an aggregate JaCoCo report for backend coverage.'
+    dependsOn(tasks.named('allTests'))
+
+    executionData.from(fileTree(layout.buildDirectory.dir('jacoco')) {
+        include '*.exec'
+    })
+
+    sourceDirectories.from(files(sourceSets.main.allSource.srcDirs))
+    additionalSourceDirs.from(files(sourceSets.main.allSource.srcDirs))
+
+    classDirectories.from(files(sourceSets.main.output).asFileTree.matching {
+        exclude backendCoverageExcludes
+    })
+
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
+}
+
+tasks.register('jacocoAllTestsCoverageVerification', JacocoCoverageVerification) {
+    group = 'verification'
+    description = 'Verifies aggregate JaCoCo coverage for backend code only.'
+    dependsOn(tasks.named('allTests'))
+
+    executionData.from(fileTree(layout.buildDirectory.dir('jacoco')) {
+        include '*.exec'
+    })
+
+    sourceDirectories.from(files(sourceSets.main.allSource.srcDirs))
+    additionalSourceDirs.from(files(sourceSets.main.allSource.srcDirs))
+
+    classDirectories.from(files(sourceSets.main.output).asFileTree.matching {
+        exclude backendCoverageExcludes
+    })
+
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.80
+            }
+        }
+    }
+}

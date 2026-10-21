@@ -1,0 +1,4 @@
+/mvnw   text eol=lf
+gradlew text eol=lf
+gradlew.bat text eol=crlf
+*.cmd text eol=crlf
